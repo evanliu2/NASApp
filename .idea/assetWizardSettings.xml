@@ -34,7 +34,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="000000" />
+                                      <entry key="backgroundColor" value="4a007e" />
                                       <entry key="foregroundImage" value="$PROJECT_DIR$/app/src/main/res/Space.png" />
                                     </map>
                                   </option>

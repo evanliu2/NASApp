@@ -54,11 +54,7 @@ public class SearchActivity extends AppCompatActivity {
                 String yearPls = year.getText().toString();
                 String monthPls = month.getText().toString();
                 String dayPls = day.getText().toString();
-                if (checkDateValidity(yearPls, monthPls, dayPls) == true) {
-                    getAPODbyDay(dateMaker(yearPls, monthPls, dayPls));
-                } else {
-                    Toast.makeText(SearchActivity.this, "You did it wrong, user!", Toast.LENGTH_SHORT).show();
-                }
+                getAPODbyDay(dateMaker(yearPls, monthPls, dayPls));
             }
         });
     }
@@ -166,13 +162,17 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<NasaResponse> call,
                                    Response<NasaResponse> response) {
-                date1.setText(response.body().getDate());
-                title1.setText(response.body().getTitle());
-                explanation1.setText(response.body().getExplanation());
-                Log.d(TAG, response.body().getUrl());
-                Picasso.get()
-                        .load(response.body().getUrl())
-                        .into(pic);
+                try {
+                    date1.setText(response.body().getDate());
+                    title1.setText(response.body().getTitle());
+                    explanation1.setText(response.body().getExplanation());
+                    Picasso.get()
+                            .load(response.body().getUrl())
+                            .into(pic);
+                } catch(NullPointerException e) {
+                    Toast.makeText(SearchActivity.this, "Wrong Entry!", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
